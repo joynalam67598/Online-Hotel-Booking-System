@@ -1,0 +1,56 @@
+.add-section {
+    background-image: url("../images/banner_bg.jpg");
+    /*background-color: royalblue;*/
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+#tarns-div {
+    margin: 30px;
+    background-color: #ffffff;
+    border: 1px solid black;
+    opacity: 2.0;
+}
+.facilities_area {
+    position: relative;
+    z-index: 1;
+    background: #04091e;
+    overflow: hidden;
+}
+
+.facilities_area .bg-parallax {
+    background: url("../images/banner_bg.jpg") no-repeat scroll center 0/cover;
+    opacity: 0.15;
+}
+
+.facilities_item {
+    border: 1px solid #777777;
+    border-radius: 10px;
+    background-color: rgba(249, 249, 255, 0.102);
+    padding: 31px 40px 37px;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.facilities_item .sec_h4 {
+    padding-bottom: 18px;
+    color: #fff;
+}
+
+.facilities_item .sec_h4 i {
+    color: #f3c300;
+    font-size: 24px;
+    line-height: 38px;
+    display: inline-block;
+    vertical-align: bottom;
+    padding-right: 20px;
+}
+
+.facilities_item p {
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 0px;
+}
+.section_gap {
+    padding: 120px 0;
+}
