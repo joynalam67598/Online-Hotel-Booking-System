@@ -48,7 +48,6 @@
                 </div>
             </div>
             {{Form::close()}}
-
         </div>
         <!-- /.login-card-body -->
     </div>

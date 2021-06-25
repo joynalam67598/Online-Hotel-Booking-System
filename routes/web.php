@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+    use Illuminate\Support\Facades\Auth;
+    use Illuminate\Support\Facades\Route;
 
 
 //------------------- FRONTEND --------------------------
@@ -292,3 +293,31 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+    // Google Login
+    Route::get('/login/google',[
+        'uses'=>'Auth\LoginController@redirectToGoogle',
+        'as'=>'login-google'
+    ]);
+    Route::get('/login/google/callback',[
+        'uses'=>'Auth\LoginController@handleGoogleCallback',
+    ]);
+
+    // Facebook Login
+    Route::get('/login/facebook',[
+        'uses'=>'Auth\LoginController@redirectToFacebook',
+        'as'=>'login-facebook'
+    ]);
+    Route::get('/login/facebook/callback',[
+        'uses'=>'Auth\LoginController@handleFacebookCallback',
+    ]);
+
+    // Github Login
+    Route::get('/login/github',[
+        'uses'=>'Auth\LoginController@redirectToGithub',
+        'as'=>'login-github'
+    ]);
+    Route::get('/login/github/callback',[
+        'uses'=>'Auth\LoginController@handleGithubCallback',
+    ]);
+

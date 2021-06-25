@@ -46,6 +46,18 @@
                 {{Form::submit('Sign In',['class'=>'form-control btn btn-block btn-info'])}}
             </div>
             {{Form::close()}}
+            <div class="social-auth-links text-center mb-3">
+                <p>- OR -</p>
+                <a href="{{route('login-facebook')}}" class="btn btn-block btn-primary">
+                    <i class="fa fa-facebook mr-2"></i> Sign in using Facebook
+                </a>
+                <a href="{{route('login-google')}}" class="btn btn-block btn-danger">
+                    <i class="fa fa-google-plus mr-2"></i> Sign in using Google+
+                </a>
+                <a href="{{route('login-github')}}" class="btn btn-block btn-dark">
+                    <i class="fa fa-github mr-2"></i> Sign in using Github
+                </a>
+            </div>
             <h5 class="text-center" style="color: red" id="message">{{Session::get('message')}}</h5>
             <br>
         </div>

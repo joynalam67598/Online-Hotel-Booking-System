@@ -32,12 +32,12 @@
                 <li><a href="#contact" class="nav-link">{{"Contact"}}</a></li>
             </ul>
             <ul class="navbar-nav">
-                <li><a href="{{route("sign-up")}}" class="nav-link">{{"SignUp"}}</a></li>
                 @if(Session::get('customerId'))
-                    <li><a href='#'  class="nav-link" onclick="document.getElementById('customerSignOutForm').submit();">{{"SignOut"}}</a></li>
+                    <li><a href='#'  class="nav-link" onclick="document.getElementById('customerSignOutForm').submit();">{{Auth::user()->name}}{{"SignOut"}}</a></li>
                     {{Form::open(['route'=>'customer-sign-out','method'=>'post','id'=>'customerSignOutForm'])}}
                     {{Form::close()}}
                 @else
+                    <li><a href="{{route("sign-up")}}" class="nav-link">{{"SignUp"}}</a></li>
                     <li><a href="{{route('sign-in')}}" class="nav-link">{{"SignIn"}}</a></li>
                 @endif
             </ul>
