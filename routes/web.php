@@ -108,6 +108,7 @@
 
 //  ----------------------- ADMIN ----------------------
 
+
     //----------------------location--------------------
 
     Route::get('/location/add',[
@@ -289,6 +290,7 @@
         'uses'=>'BookingController@deleteBooking',
         'as'=>'delete-booking'
     ]);
+
 
 
 Auth::routes();

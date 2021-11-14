@@ -38,16 +38,16 @@ class HotelController extends Controller
         $this->validate($request,[
             'first_name'=> 'required',
             'last_name'=> 'required',
-            'email'=> 'required|unique:customers,email',
+            'email'=> 'email|required|unique:customers,email',
             'password'=> 'required|unique:customers,password',
-            'phone_number'=> 'required|regex:/^(\+\d{1,3}[- ]?)?\d{10}$/|max:15|min:11',
+//            'phone_number'=> 'required|regex:/^(\+\d{1,3}[- ]?)?\d{10}$/|max:15|min:11',
+            'phone_number'=> 'required|max:15|min:11',
             'address'=> 'required'
         ]);
     }
     public function saveCustomerInfo(Request $request){
 
         $this->validateCustomerInfo($request);
-
         $customer = new Customer();
         $customer->first_name   = $request->first_name;
         $customer->last_name    = $request->last_name;
@@ -88,8 +88,8 @@ class HotelController extends Controller
         $datetime2 = new DateTime($checkout_date);
         $interval = $datetime1->diff($datetime2);
         $days = $interval->format('%a');
-        $hotels = Hotel::where('location_id',$id)->first();
-        if(count($hotels))
+        $hotels = Hotel::where('location_id',$id)->get();
+        if($hotels)
         {
             $this->putDataToSession($request);
             Session::put('total_day',$days);
