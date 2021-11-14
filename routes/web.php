@@ -14,7 +14,7 @@ if (App::environment('production')) {
         'uses'=>'HotelController@showHomePage',
         'as'=>'/'
     ]);
-
+Auth::routes(['register' => false]);
     //-------------------auth---------------------
 
     Route::get('/customer/sign-in',[
