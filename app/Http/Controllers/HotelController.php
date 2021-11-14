@@ -40,7 +40,8 @@ class HotelController extends Controller
             'last_name'=> 'required',
             'email'=> 'required|unique:customers,email',
             'password'=> 'required|unique:customers,password',
-            'phone_number'=> 'required|regex:/^(\+\d{1,3}[- ]?)?\d{10}$/|max:15|min:11',
+//             'phone_number'=> 'required|regex:/^(\+\d{1,3}[- ]?)?\d{10}$/|max:15|min:11',
+            'phone_number'=> 'required|max:15|min:11',
             'address'=> 'required'
         ]);
     }
