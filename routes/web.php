@@ -10,8 +10,12 @@
         URL::forceScheme('https');
     }
 
-    Route::any('/register', function() {
-        return  view('admin.auth.sing-in');
+    Route::get('/register', function() {
+    return redirect('/login');
+    });
+
+    Route::post('/register', function() {
+        return redirect('/login');
     });
 
 //------------------- FRONTEND --------------------------
