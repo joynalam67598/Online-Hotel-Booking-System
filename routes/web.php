@@ -3,9 +3,7 @@
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Route;
 
-if (App::environment('production')) {
-    URL::forceScheme('https');
-}
+
 //------------------- FRONTEND --------------------------
 
     //-------------------home----------------------
