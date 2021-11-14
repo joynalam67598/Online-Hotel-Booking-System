@@ -34,11 +34,11 @@
 <div class="wrapper">
 
     <!-- Navbar -->
-    @include("admin.includes.top-bar");
+    @include("admin.Includes.top-bar");
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    @include('admin.includes.left-navbar')
+    @include('admin.Includes.left-navbar')
 
     <div class="content-wrapper">
         <div class="content-header">
@@ -64,7 +64,7 @@
 
     </div>
     <!-- footer -->
-    @include('admin.includes.footer')
+    @include('admin.Includes.footer')
 
 
     <!-- Control Sidebar -->
