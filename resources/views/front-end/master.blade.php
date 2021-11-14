@@ -33,7 +33,7 @@
             </ul>
             <ul class="navbar-nav">
                 @if(Session::get('customerId'))
-                    <li><a href='#'  class="nav-link" onclick="document.getElementById('customerSignOutForm').submit();">{{Auth::user()->name}}{{"SignOut"}}</a></li>
+                    <li><a href='#'  class="nav-link" onclick="document.getElementById('customerSignOutForm').submit();">{{Session::get('customerName')}}{{" "}}{{"SignOut"}}</a></li>
                     {{Form::open(['route'=>'customer-sign-out','method'=>'post','id'=>'customerSignOutForm'])}}
                     {{Form::close()}}
                 @else
