@@ -88,7 +88,7 @@ class HotelController extends Controller
         $datetime2 = new DateTime($checkout_date);
         $interval = $datetime1->diff($datetime2);
         $days = $interval->format('%a');
-        $hotels = Hotel::where('location_id',$id)->get();
+        $hotels = Hotel::where('location_id',$id)->first();
         if(count($hotels))
         {
             $this->putDataToSession($request);
@@ -202,13 +202,13 @@ class HotelController extends Controller
         ]);
     }
     public function deleteImage($id){
-        $image = \App\Image::find($id);
+        $image = \App\Image::findOrFail($id);
         $image->delete();
         return redirect('/hotel/image/manage')->with('message','Image deleted successfully');
     }
     public function showHotelDetails($id){
-        $hotel = Hotel::find($id);
-        $location = Location::find($hotel->location_id);
+        $hotel = Hotel::findOrFail($id);
+        $location = Location::findOrFail($hotel->location_id);
         return view('admin.hotel.hotel-details',[
             'hotel'=>$hotel,
             'location'=>$location
@@ -217,7 +217,7 @@ class HotelController extends Controller
     }
     public function editHotel($id){
         $locations = Location::all();
-        $hotel = Hotel::find($id);
+        $hotel = Hotel::findOrFail($id);
         return view('admin.hotel.edit-hotel',[
             'hotel'=>$hotel,
             'locations'=>$locations
@@ -245,7 +245,7 @@ class HotelController extends Controller
     {
         $this->validateHotelInfo($request);
 
-        $hotel = Hotel::find($request->hotel_id);
+        $hotel = Hotel::findOrFail($request->hotel_id);
         $hotelImage= $request->file('hotel_image');
 
         if($hotelImage)
@@ -260,7 +260,7 @@ class HotelController extends Controller
         return redirect('/hotel/manage')->with('message','Hotel updated successfully!!');
     }
     public function deleteHotel($id){
-        $hotel= Hotel::find($id);
+        $hotel= Hotel::findOrFail($id);
         $rooms = Room::where('hotel_id',$id)->get();
         foreach ($rooms as $room)
         {
