@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard</title>
+    <link rel="icon" href="{{asset('/')}}/front-end/images/favicon.png" type="image">
+    <title>Dashboard | Royal Hotel</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -34,11 +35,11 @@
 <div class="wrapper">
 
     <!-- Navbar -->
-    @include("admin.includes.top-bar");
+    @include("admin.Includes.top-bar");
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    @include('admin.includes.left-navbar')
+    @include('admin.Includes.left-navbar')
 
     <div class="content-wrapper">
         <div class="content-header">
@@ -64,7 +65,7 @@
 
     </div>
     <!-- footer -->
-    @include('admin.includes.footer')
+    @include('admin.Includes.footer')
 
 
     <!-- Control Sidebar -->
