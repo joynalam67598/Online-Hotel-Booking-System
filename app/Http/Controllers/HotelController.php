@@ -88,8 +88,8 @@ class HotelController extends Controller
         $datetime2 = new DateTime($checkout_date);
         $interval = $datetime1->diff($datetime2);
         $days = $interval->format('%a');
-        $hotels = Hotel::where('location_id',$id)->first();
-        if(count($hotels))
+        $hotels = Hotel::where('location_id',$id)->get();
+        if($hotels)
         {
             $this->putDataToSession($request);
             Session::put('total_day',$days);
