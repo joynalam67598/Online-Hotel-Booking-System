@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6d669a1-62c1-4ce0-bf08-c810c95219ea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/online-hotel-booking.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/online-hotel-booking.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/Includes/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/includes/footer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/Includes/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/includes/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/Includes/left-navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/includes/left-navbar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/Includes/menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/includes/menu.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/Includes/top-bar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/includes/top-bar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/master.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -279,7 +269,7 @@
       <workItem from="1624819164752" duration="54000" />
       <workItem from="1636807093352" duration="3242000" />
       <workItem from="1636899118089" duration="12633000" />
-      <workItem from="1637000873383" duration="1884000" />
+      <workItem from="1637000873383" duration="2411000" />
     </task>
     <servers />
   </component>
