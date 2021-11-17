@@ -17,7 +17,7 @@ class RoomController extends Controller
         $count = $hotel->availabel_room;
         if(!$count)
         {
-            $rooms = Room::where('hotel_id',$id)
+            $rooms = Room::where('hotel_id',$hotelId)
                 ->where('available_room','>',0)
                 ->get();
 
