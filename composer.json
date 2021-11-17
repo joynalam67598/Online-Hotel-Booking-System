@@ -18,7 +18,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4",
         "laravelcollective/html": "^6.1",
-        "yajra/laravel-datatables-oracle": "~9.0"
+        "yajra/laravel-datatables-oracle": "~9.0",
+        "ext-gd": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
@@ -64,6 +65,5 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
-    },
-    "gd":"*"
+    }
 }
