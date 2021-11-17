@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class RoomController extends Controller
 {
     public function showRooms($id){
-        $hotel = Hotel::findOrFail($id);
+        $hotel = Hotel::findOrFail((int)$id);
         $count = $hotel->availabel_room;
         if(!$count)
         {
