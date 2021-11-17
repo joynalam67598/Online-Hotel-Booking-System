@@ -12,7 +12,8 @@ use Illuminate\Http\Request;
 class RoomController extends Controller
 {
     public function showRooms($id){
-        $hotel = Hotel::findOrFail($id);
+        $hotelId = (int)$id;
+        $hotel = Hotel::findOrFail($hotelId);
         $count = $hotel->availabel_room;
         if(!$count)
         {
@@ -20,7 +21,7 @@ class RoomController extends Controller
                 ->where('available_room','>',0)
                 ->get();
 
-            $hotelImages = \App\Image::where('hotel_id',$id)->get();
+            $hotelImages = \App\Image::where('hotel_id',$hotelId)->get();
 
             return view('front-end.room.room',[
                 'rooms'=>$rooms,
@@ -29,7 +30,7 @@ class RoomController extends Controller
             ]);
 
         }
-        return redirect('/hotel/available')->with('id',$id);
+        return redirect('/hotel/available')->with('id',$hotelId);
     }
 
     public function changeRoom($id){
