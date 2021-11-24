@@ -165,9 +165,9 @@ class HotelController extends Controller
         ]);
     }
     protected function uploadHotelImages($request){
-        $id = $request->hotel_id;
-        $hotel = Hotel::find($id);
-        $images = \App\Image::where('hotel_id',$id)->get();
+        $hotel_id = $request->hotel_id;
+        $hotel = Hotel::findOrFail($hotel_id);
+        $images = \App\Image::where('hotel_id',$hotel_id)->get();
         $count = count($images);
         $hotelImage = $request->file('hotel_image');
         $imageType = $hotelImage->getClientOriginalExtension();
@@ -202,13 +202,16 @@ class HotelController extends Controller
         ]);
     }
     public function deleteImage($id){
-        $image = \App\Image::findOrFail($id);
+        $image_id = $id;
+        $image = \App\Image::findOrFail($image_id);
         $image->delete();
         return redirect('/hotel/image/manage')->with('message','Image deleted successfully');
     }
     public function showHotelDetails($id){
-        $hotel = Hotel::findOrFail($id);
-        $location = Location::findOrFail($hotel->location_id);
+        $hotel_id = $id;
+        $hotel = Hotel::findOrFail($hotel_id);
+        $location_id = $hotel->location_id;
+        $location = Location::findOrFail($location_id);
         return view('admin.hotel.hotel-details',[
             'hotel'=>$hotel,
             'location'=>$location
@@ -216,8 +219,9 @@ class HotelController extends Controller
 
     }
     public function editHotel($id){
+        $hotel_id = $id;
         $locations = Location::all();
-        $hotel = Hotel::findOrFail($id);
+        $hotel = Hotel::findOrFail($hotel_id);
         return view('admin.hotel.edit-hotel',[
             'hotel'=>$hotel,
             'locations'=>$locations
@@ -244,8 +248,8 @@ class HotelController extends Controller
     public function updateHotelInfo(Request $request)
     {
         $this->validateHotelInfo($request);
-
-        $hotel = Hotel::findOrFail($request->hotel_id);
+        $hotel_id = $request->hotel_id;
+        $hotel = Hotel::findOrFail($hotel_id);
         $hotelImage= $request->file('hotel_image');
 
         if($hotelImage)
@@ -260,11 +264,13 @@ class HotelController extends Controller
         return redirect('/hotel/manage')->with('message','Hotel updated successfully!!');
     }
     public function deleteHotel($id){
-        $hotel= Hotel::findOrFail($id);
-        $rooms = Room::where('hotel_id',$id)->get();
+        $hotel_id = $id;
+        $hotel= Hotel::findOrFail($hotel_id);
+        $rooms = Room::where('hotel_id',$hotel_id)->get();
         foreach ($rooms as $room)
         {
-            $room = Room::find($room->id);
+            $room_id = $room->id;
+            $room = Room::findOrFail($room_id);
             $room->delete();
         }
         $hotel->delete();

@@ -100,11 +100,16 @@ class BookingController extends Controller
         return 'Success!!';
     }
     public function showBookingDetailsView($id){
-        $booking = Booking::findOrFail($id);
-        $location = Location::findOrFail($booking->location_id);
-        $customer = Customer::findOrFail($booking->customer_id);
-        $hotel = Hotel::findOrFail($booking->hotel_id);
-        $room = Room::findOrFail($booking->room_id);
+        $booking_id = $id;
+        $booking = Booking::findOrFail($booking_id);
+        $location_id = $booking->location_id;
+        $location = Location::findOrFail($location_id);
+        $customer_id = $booking->customer_id;
+        $customer = Customer::findOrFail($customer_id);
+        $hotel_id = $booking->hotel_id;
+        $room_id = $booking->room_id;
+        $hotel = Hotel::findOrFail($hotel_id);
+        $room = Room::findOrFail($room_id);
         $payment = Payment::where('booking_id',$booking->id)->first();
         $bookingDetails = BookingDetails::where('booking_id',$booking->id)->first();
 
@@ -120,11 +125,16 @@ class BookingController extends Controller
         ]);
     }
     public function showConfirmBooking($id){
-        $booking = Booking::findOrFail($id);
-        $location = Location::findOrFail($booking->location_id);
-        $customer = Customer::findOrFail($booking->customer_id);
-        $hotel = Hotel::findOrFail($booking->hotel_id);
-        $room = Room::findOrFail($booking->room_id);
+        $booking_id = $id;
+        $booking = Booking::findOrFail($booking_id);
+        $location_id = $booking->location_id;
+        $location = Location::findOrFail($location_id);
+        $customer_id = $booking->customer_id;
+        $customer = Customer::findOrFail($customer_id);
+        $hotel_id = $booking->hotel_id;
+        $room_id = $booking->room_id;
+        $hotel = Hotel::findOrFail($hotel_id);
+        $room = Room::findOrFail($room_id);
         $payment = Payment::where('booking_id',$booking->id)->first();
         return view('admin.booking.confirm-booking',[
             'booking'=>$booking,
@@ -163,8 +173,8 @@ class BookingController extends Controller
         return redirect('/booking/manage')->with('message','Room Booked successfully!!');
     }
     public function showConfirmRelease($id){
-
-        $booking = Booking::findOrFail($id);
+        $booking_id = $id;
+        $booking = Booking::findOrFail($booking_id);
         $booking->booking_status = 2;
 
         $hotelId =$booking->hotel_id;
