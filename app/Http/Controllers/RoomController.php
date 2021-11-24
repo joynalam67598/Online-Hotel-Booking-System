@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class RoomController extends Controller
 {
     public function showRooms($id){
-        $hotel = Hotel::findOfFail((int)$id);
+        $hotel = Hotel::findOrFail((int)$id);
         $count = $hotel->availabel_room;
         if(!$count)
         {
@@ -33,7 +33,7 @@ class RoomController extends Controller
     }
 
     public function changeRoom($id){
-        $hotel = Hotel::findOfFail($id);
+        $hotel = Hotel::findOrFail($id);
 
         $rooms = Room::where('hotel_id',$id)
                 ->where('available_room','>',0)
@@ -122,9 +122,9 @@ class RoomController extends Controller
     }
 
     public function showRoomDetails($id){
-        $room = Room::findOfFail($id);
-        $hotel = Hotel::findOfFail($room->hotel_id);
-        $location = Location::findOfFail($room->location_id);
+        $room = Room::findOrFail($id);
+        $hotel = Hotel::findOrFail($room->hotel_id);
+        $location = Location::findOrFail($room->location_id);
         return view('admin.room.room-details',[
             'room'=>$room,
             'hotel'=>$hotel,
@@ -133,7 +133,7 @@ class RoomController extends Controller
     }
 
 //    public function bookRoom($id){
-//        $room = Room::findOfFail($id);
+//        $room = Room::findOrFail($id);
 //        $room->room_status=0;
 //        $room->save();
 //        return redirect('/room/manage')->with('message','Room Booked successfully!!');
@@ -141,7 +141,7 @@ class RoomController extends Controller
 //    }
 //
 //    public function unbookedRoom($id){
-//        $room = Room::findOfFail($id);
+//        $room = Room::findOrFail($id);
 //        $room->room_status=1;
 //        $room->save();
 //        return redirect('/room/manage')->with('message','Room Unbooked successfully!!');
@@ -151,7 +151,7 @@ class RoomController extends Controller
     public function showEditRoom($id){
         $locations = Location::all();
         $hotels = Hotel::all();
-        $room = Room::findOfFail($id);
+        $room = Room::findOrFail($id);
         return view('admin.room.edit-room',[
             'room'=>$room,
             'hotels'=>$hotels,
@@ -184,7 +184,7 @@ class RoomController extends Controller
 
        $this->validateRoomInfo($request);
 
-        $room = Room::findOfFail($request->room_id);
+        $room = Room::findOrFail($request->room_id);
         $roomImage= $request->file('room_image');
 
         if($roomImage)
@@ -200,7 +200,7 @@ class RoomController extends Controller
     }
 
     public function deleteRoom($id){
-        $room = Room::findOfFail($id);
+        $room = Room::findOrFail($id);
         $room->delete();
         return redirect('/room/manage')->with('message','Room deleted successfully!!');
     }

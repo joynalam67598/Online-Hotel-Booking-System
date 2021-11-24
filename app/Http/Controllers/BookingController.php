@@ -19,8 +19,8 @@ class BookingController extends Controller
     {
         $hotel_id = $request->hotel_id;
         $room_id = $request->room_id;
-        $hotel = Hotel::findOfFail($hotel_id);
-        $room = Room::findOfFail($room_id);
+        $hotel = Hotel::findOrFail($hotel_id);
+        $room = Room::findOrFail($room_id);
         Session::put('room_quantity', $request->room_quantity);;
         Session::put('room_id', $request->room_id);;
         Session::put('hotel_id', $request->hotel_id);;
@@ -100,11 +100,11 @@ class BookingController extends Controller
         return 'Success!!';
     }
     public function showBookingDetailsView($id){
-        $booking = Booking::findOfFail($id);
-        $location = Location::findOfFail($booking->location_id);
-        $customer = Customer::findOfFail($booking->customer_id);
-        $hotel = Hotel::findOfFail($booking->hotel_id);
-        $room = Room::findOfFail($booking->room_id);
+        $booking = Booking::findOrFail($id);
+        $location = Location::findOrFail($booking->location_id);
+        $customer = Customer::findOrFail($booking->customer_id);
+        $hotel = Hotel::findOrFail($booking->hotel_id);
+        $room = Room::findOrFail($booking->room_id);
         $payment = Payment::where('booking_id',$booking->id)->first();
         $bookingDetails = BookingDetails::where('booking_id',$booking->id)->first();
 
@@ -120,11 +120,11 @@ class BookingController extends Controller
         ]);
     }
     public function showConfirmBooking($id){
-        $booking = Booking::findOfFail($id);
-        $location = Location::findOfFail($booking->location_id);
-        $customer = Customer::findOfFail($booking->customer_id);
-        $hotel = Hotel::findOfFail($booking->hotel_id);
-        $room = Room::findOfFail($booking->room_id);
+        $booking = Booking::findOrFail($id);
+        $location = Location::findOrFail($booking->location_id);
+        $customer = Customer::findOrFail($booking->customer_id);
+        $hotel = Hotel::findOrFail($booking->hotel_id);
+        $room = Room::findOrFail($booking->room_id);
         $payment = Payment::where('booking_id',$booking->id)->first();
         return view('admin.booking.confirm-booking',[
             'booking'=>$booking,
@@ -141,22 +141,22 @@ class BookingController extends Controller
             'payment_status'=> 'required',
         ]);
         $hotelId =$request->hotel_id;
-        $hotel = Hotel::findOfFail($hotelId);
+        $hotel = Hotel::findOrFail($hotelId);
         $hotel->available_room -= $request->book_room;
         $hotel->save();
 
         $roomId =$request->room_id;
-        $room = Room::findOfFail($roomId);
+        $room = Room::findOrFail($roomId);
         $room->available_room -= $request->book_room;
         $room->save();
 
         $bookingId =$request->booking_id;
-        $booking = Booking::findOfFail($bookingId);
+        $booking = Booking::findOrFail($bookingId);
         $booking->booking_status = 1;
         $booking->save();
 
         $paymentId =$request->payment_id;
-        $payment = Payment::findOfFail($paymentId);
+        $payment = Payment::findOrFail($paymentId);
         $payment->payment_status = $request->payment_status;
         $payment->save();
 
@@ -164,15 +164,15 @@ class BookingController extends Controller
     }
     public function showConfirmRelease($id){
 
-        $booking = Booking::findOfFail($id);
+        $booking = Booking::findOrFail($id);
         $booking->booking_status = 2;
 
         $hotelId =$booking->hotel_id;
-        $hotel = Hotel::findOfFail($hotelId);
+        $hotel = Hotel::findOrFail($hotelId);
         $hotel->available_room += $booking->number_of_room;
 
         $roomId =$booking->room_id;
-        $room = Room::findOfFail($roomId);
+        $room = Room::findOrFail($roomId);
         $room->available_room += $booking->number_of_room;
 
         $booking->save();
@@ -194,7 +194,7 @@ class BookingController extends Controller
         return redirect('/booking/manage')->with('message','This booking is Released.Now you can remove this !!');
     }
     public function deleteBooking($id){
-        $booking = Booking::findOfFail($id);
+        $booking = Booking::findOrFail($id);
         $booking->delete();
 
         $payment = Payment::where('booking_id',$booking->id)->first();

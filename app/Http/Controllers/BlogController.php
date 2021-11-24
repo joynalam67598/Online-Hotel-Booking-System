@@ -16,7 +16,7 @@ class BlogController extends Controller
     }
     public function showBlogDetails($id)
     {
-        $blog = Blog::findOfFail($id);
+        $blog = Blog::findOrFail($id);
         return view('front-end.blog.read-blog',[
             'blog'=>$blog
         ]);
@@ -67,14 +67,14 @@ class BlogController extends Controller
     }
 
     public function publisheBlog($id){
-        $blog = Blog::findOfFail($id);
+        $blog = Blog::findOrFail($id);
         $blog->publication_status=1;
         $blog->save();
         return redirect('/blog/manage')->with('message','Blog Published successfully!!');
     }
 
     public function unpublishBlog($id){
-        $blog = Blog::findOfFail($id);
+        $blog = Blog::findOrFail($id);
         $blog->publication_status=0;
         $blog->save();
         return redirect('/blog/manage')->with('message','Blog Unpublished successfully!!');
@@ -83,7 +83,7 @@ class BlogController extends Controller
 
     public function showEditBlog($id){
 
-        $blog = Blog::findOfFail($id);
+        $blog = Blog::findOrFail($id);
         return view('admin.blog.edit-blog',[
             'blog'=>$blog
         ]);
@@ -91,7 +91,7 @@ class BlogController extends Controller
 
     public function deleteBlog($id)
     {
-        $blog = Blog::findOfFail($id);
+        $blog = Blog::findOrFail($id);
         $blog->delete();
         return redirect('/blog/manage')->with('message','Blog deleted successfully!!');
     }
@@ -122,7 +122,7 @@ class BlogController extends Controller
     {
         $this->validateBlogInfo($request);
 
-        $blog = Blog::findOfFail($request->blog_id);
+        $blog = Blog::findOrFail($request->blog_id);
         $blogImage= $request->file('blog_image');
         if($blogImage)
         {
