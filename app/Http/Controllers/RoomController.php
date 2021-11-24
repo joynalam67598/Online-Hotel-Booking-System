@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class RoomController extends Controller
 {
     public function showRooms($id){
-        $hotel_id = $id;
+        $hotel_id = (int)$id;
         $hotel = Hotel::findOrFail($hotel_id);
         $count = $hotel->availabel_room;
         if(!$count)
@@ -34,7 +34,7 @@ class RoomController extends Controller
     }
 
     public function changeRoom($id){
-        $hotel_id = $id;
+        $hotel_id = (int)$id;
         $hotel = Hotel::findOrFail($hotel_id);
 
         $rooms = Room::where('hotel_id',$hotel_id)
@@ -70,7 +70,7 @@ class RoomController extends Controller
     }
 
     public function getHotels($id){
-        $location_id = $id;
+        $location_id = (int)$id;
         $hotelNames = Hotel::where('location_id',$location_id)->get();
         return response()->json($hotelNames);
     }
@@ -125,11 +125,11 @@ class RoomController extends Controller
     }
 
     public function showRoomDetails($id){
-        $room_id = $id;
+        $room_id = (int)$id;
         $room = Room::findOrFail($room_id);
-        $hotel_id = $room->hotel_id;
+        $hotel_id = (int)$room->hotel_id;
         $hotel = Hotel::findOrFail($hotel_id);
-        $location_id = $room->location_id;
+        $location_id = (int)$room->location_id;
         $location = Location::findOrFail($location_id);
         return view('admin.room.room-details',[
             'room'=>$room,
@@ -157,7 +157,7 @@ class RoomController extends Controller
     public function showEditRoom($id){
         $locations = Location::all();
         $hotels = Hotel::all();
-        $room_id = $id;
+        $room_id = (int)$id;
         $room = Room::findOrFail($room_id);
         return view('admin.room.edit-room',[
             'room'=>$room,
@@ -190,7 +190,7 @@ class RoomController extends Controller
    public function updateRoomInfo(Request $request){
 
        $this->validateRoomInfo($request);
-       $room_id = $request->room_id;
+       $room_id = (int)$request->room_id;
         $room = Room::findOrFail($room_id);
         $roomImage= $request->file('room_image');
 
@@ -207,7 +207,7 @@ class RoomController extends Controller
     }
 
     public function deleteRoom($id){
-        $room_id = $id;
+        $room_id = (int)$id;
         $room = Room::findOrFail($room_id);
         $room->delete();
         return redirect('/room/manage')->with('message','Room deleted successfully!!');

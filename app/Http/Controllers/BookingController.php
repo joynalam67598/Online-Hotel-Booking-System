@@ -17,8 +17,8 @@ class BookingController extends Controller
 {
     public function showBookingDetails(Request $request)
     {
-        $hotel_id = $request->hotel_id;
-        $room_id = $request->room_id;
+        $hotel_id = (int)$request->hotel_id;
+        $room_id = (int)$request->room_id;
         $hotel = Hotel::findOrFail($hotel_id);
         $room = Room::findOrFail($room_id);
         Session::put('room_quantity', $request->room_quantity);;
@@ -100,14 +100,14 @@ class BookingController extends Controller
         return 'Success!!';
     }
     public function showBookingDetailsView($id){
-        $booking_id = $id;
+        $booking_id = (int)$id;
         $booking = Booking::findOrFail($booking_id);
-        $location_id = $booking->location_id;
+        $location_id = (int)$booking->location_id;
         $location = Location::findOrFail($location_id);
-        $customer_id = $booking->customer_id;
+        $customer_id = (int)$booking->customer_id;
         $customer = Customer::findOrFail($customer_id);
-        $hotel_id = $booking->hotel_id;
-        $room_id = $booking->room_id;
+        $hotel_id = (int)$booking->hotel_id;
+        $room_id = (int)$booking->room_id;
         $hotel = Hotel::findOrFail($hotel_id);
         $room = Room::findOrFail($room_id);
         $payment = Payment::where('booking_id',$booking->id)->first();
@@ -125,14 +125,14 @@ class BookingController extends Controller
         ]);
     }
     public function showConfirmBooking($id){
-        $booking_id = $id;
+        $booking_id = (int)$id;
         $booking = Booking::findOrFail($booking_id);
-        $location_id = $booking->location_id;
+        $location_id = (int)$booking->location_id;
         $location = Location::findOrFail($location_id);
-        $customer_id = $booking->customer_id;
+        $customer_id = (int)$booking->customer_id;
         $customer = Customer::findOrFail($customer_id);
-        $hotel_id = $booking->hotel_id;
-        $room_id = $booking->room_id;
+        $hotel_id = (int)$booking->hotel_id;
+        $room_id = (int)$booking->room_id;
         $hotel = Hotel::findOrFail($hotel_id);
         $room = Room::findOrFail($room_id);
         $payment = Payment::where('booking_id',$booking->id)->first();
@@ -173,15 +173,15 @@ class BookingController extends Controller
         return redirect('/booking/manage')->with('message','Room Booked successfully!!');
     }
     public function showConfirmRelease($id){
-        $booking_id = $id;
+        $booking_id =(int) $id;
         $booking = Booking::findOrFail($booking_id);
         $booking->booking_status = 2;
 
-        $hotelId =$booking->hotel_id;
+        $hotelId =(int)$booking->hotel_id;
         $hotel = Hotel::findOrFail($hotelId);
         $hotel->available_room += $booking->number_of_room;
 
-        $roomId =$booking->room_id;
+        $roomId =(int)$booking->room_id;
         $room = Room::findOrFail($roomId);
         $room->available_room += $booking->number_of_room;
 
@@ -204,13 +204,13 @@ class BookingController extends Controller
         return redirect('/booking/manage')->with('message','This booking is Released.Now you can remove this !!');
     }
     public function deleteBooking($id){
-        $booking = Booking::findOrFail($id);
+        $booking = Booking::findOrFail((int)$id);
         $booking->delete();
 
-        $payment = Payment::where('booking_id',$booking->id)->first();
+        $payment = Payment::where('booking_id',(int)$booking->id)->first();
         $payment->delete();
 
-        $bookingDetails = BookingDetails::where('booking_id',$booking->id)->first();
+        $bookingDetails = BookingDetails::where('booking_id',(int)$booking->id)->first();
         $bookingDetails->delete();
 
         return redirect('/booking/manage')->with('message','booking Deleted successfully!!');

@@ -57,7 +57,7 @@ class HotelController extends Controller
         $customer->address      = $request->address;
         $customer->save();
 
-        $customerId = $customer->id;
+        $customerId = (int)$customer->id;
         Session::put('customerId',$customerId);
         Session::put('customerName',$customer->first_name.' '.$customer->last_name);
 
@@ -165,7 +165,7 @@ class HotelController extends Controller
         ]);
     }
     protected function uploadHotelImages($request){
-        $hotel_id = $request->hotel_id;
+        $hotel_id = (int)$request->hotel_id;
         $hotel = Hotel::findOrFail($hotel_id);
         $images = \App\Image::where('hotel_id',$hotel_id)->get();
         $count = count($images);
@@ -185,7 +185,7 @@ class HotelController extends Controller
         ]);
         $imageUrl = $this->uploadHotelImages($request);
         $image = new \App\Image();
-        $image->hotel_id = $request->hotel_id;
+        $image->hotel_id =(int) $request->hotel_id;
         $image->hotel_image = $imageUrl;
         $image->save();
 
@@ -202,15 +202,15 @@ class HotelController extends Controller
         ]);
     }
     public function deleteImage($id){
-        $image_id = $id;
+        $image_id = (int)$id;
         $image = \App\Image::findOrFail($image_id);
         $image->delete();
         return redirect('/hotel/image/manage')->with('message','Image deleted successfully');
     }
     public function showHotelDetails($id){
-        $hotel_id = $id;
+        $hotel_id = (int)$id;
         $hotel = Hotel::findOrFail($hotel_id);
-        $location_id = $hotel->location_id;
+        $location_id = (int)$hotel->location_id;
         $location = Location::findOrFail($location_id);
         return view('admin.hotel.hotel-details',[
             'hotel'=>$hotel,
@@ -219,7 +219,7 @@ class HotelController extends Controller
 
     }
     public function editHotel($id){
-        $hotel_id = $id;
+        $hotel_id = (int)$id;
         $locations = Location::all();
         $hotel = Hotel::findOrFail($hotel_id);
         return view('admin.hotel.edit-hotel',[
@@ -248,7 +248,7 @@ class HotelController extends Controller
     public function updateHotelInfo(Request $request)
     {
         $this->validateHotelInfo($request);
-        $hotel_id = $request->hotel_id;
+        $hotel_id = (int)$request->hotel_id;
         $hotel = Hotel::findOrFail($hotel_id);
         $hotelImage= $request->file('hotel_image');
 
@@ -264,12 +264,12 @@ class HotelController extends Controller
         return redirect('/hotel/manage')->with('message','Hotel updated successfully!!');
     }
     public function deleteHotel($id){
-        $hotel_id = $id;
+        $hotel_id = (int)$id;
         $hotel= Hotel::findOrFail($hotel_id);
         $rooms = Room::where('hotel_id',$hotel_id)->get();
         foreach ($rooms as $room)
         {
-            $room_id = $room->id;
+            $room_id = (int)$room->id;
             $room = Room::findOrFail($room_id);
             $room->delete();
         }

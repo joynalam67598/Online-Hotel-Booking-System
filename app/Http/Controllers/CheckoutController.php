@@ -67,7 +67,7 @@ class CheckoutController extends Controller
         $customer->address      = $request->address;
         $customer->save();
 
-        $customerId = $customer->id;
+        $customerId = (int)$customer->id;
         Session::put('customerId',$customerId);
         Session::put('customerName',$customer->first_name.' '.$customer->last_name);
 
@@ -117,9 +117,9 @@ class CheckoutController extends Controller
     }
 
     public function showCheckOutConfirmation(){
-        $customer_id = Session::get('customerId');
-        $room_id = Session::get('room_id');
-        $hotel_id = Session::get('hotel_id');
+        $customer_id = (int)Session::get('customerId');
+        $room_id = (int)Session::get('room_id');
+        $hotel_id = (int)Session::get('hotel_id');
         $customer = Customer::findOrFail($customer_id);
         $room = Room::findOrFail($room_id);
         $hotel= Hotel::findOrFail($hotel_id);

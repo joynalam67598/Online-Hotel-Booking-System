@@ -32,13 +32,13 @@ class LocationController extends Controller
 
     public function deleteLocation($id)
     {
-        $location_id =$id;
+        $location_id =(int)$id;
         $location = Location::findOrFail($location_id);
         $location->delete();
         $hotels = Hotel::where('location_id',$location_id)->get();
         foreach ($hotels as $hotel)
         {
-            $hotel_id = $hotel->id;
+            $hotel_id = (int)$hotel->id;
             $hotel = Hotel::findOrFail($hotel_id);
             $hotel->delete();
         }
