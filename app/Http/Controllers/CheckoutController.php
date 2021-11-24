@@ -117,9 +117,9 @@ class CheckoutController extends Controller
     }
 
     public function showCheckOutConfirmation(){
-        $customer = Customer::find(Session::get('customerId'));
-        $room = Room::find(Session::get('room_id'));
-        $hotel= Hotel::find(Session::get('hotel_id'));
+        $customer = Customer::findOfFail(Session::get('customerId'));
+        $room = Room::findOfFail(Session::get('room_id'));
+        $hotel= Hotel::findOfFail(Session::get('hotel_id'));
         return view('front-end.checkout.checkout-confirmation',[
             'room'=>$room,
             'hotel'=>$hotel,

@@ -64,7 +64,7 @@
                                     <td> <label>{{ Form::radio('payment_type', 'paypal') }} {{'Paypal'}}</label></td>
                                 </tr>
                             </table>
-                            {{Form::submit('Confirm Booking',['class'=>'btn btn-block btn-primary'])}}
+                            {{Form::submit('Confirm booking',['class'=>'btn btn-block btn-primary'])}}
                             {{Form::close()}}
                         </div>
                     </div>

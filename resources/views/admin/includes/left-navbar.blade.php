@@ -151,7 +151,7 @@
                     <a href="#" class="nav-link">
                         <i class="fas fa-handshake nav-icon"></i>
                         <p>
-                            {{"Booking"}}
+                            {{"booking"}}
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -159,7 +159,7 @@
                         <li class="nav-item">
                             <a href="{{route("manage-booking")}}" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
-                                <p>{{"Manage Booking"}}</p>
+                                <p>{{"Manage booking"}}</p>
                             </a>
                         </li>
                     </ul>

@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            {{Form::label('booking_room','Booking Room',['class'=>'col-sm-3'])}}
+                            {{Form::label('booking_room','booking Room',['class'=>'col-sm-3'])}}
                             <div class="col-sm-9">
                                 {{Form::text('booking_room',$booking->number_of_room,['class'=>'form-control','readonly'])}}
                                 <span class="text-danger">{{$errors->has('booking_room')? $errors->first('booking_room'):''}}</span>

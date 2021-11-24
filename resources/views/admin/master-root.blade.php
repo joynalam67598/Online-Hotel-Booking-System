@@ -60,9 +60,9 @@
                         <li><a href="{{route("manage-blog")}}" class="nav-link">{{"Manage Blog"}}</a></li>
                     </ul>
                 </li>
-                <li class="dropdown"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">{{"Booking"}}</a>
+                <li class="dropdown"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">{{"booking"}}</a>
                     <ul class="dropdown-menu bg-dark">
-                        <li><a href="{{route("manage-booking")}}" class="nav-link">{{"Manage Booking"}}</a></li>
+                        <li><a href="{{route("manage-booking")}}" class="nav-link">{{"Manage booking"}}</a></li>
                     </ul>
                 </li>
             </ul>
